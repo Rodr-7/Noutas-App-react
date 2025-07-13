@@ -46,7 +46,6 @@ textarea {
   border: 1px solid #646464;
   border-radius: 0.5rem;
   min-height: 100px;
-  height: auto;
 }
 
 ul {
@@ -75,7 +74,7 @@ ul {
 .area-ingreso textarea {
   flex: 1; /* ocupa todo el ancho disponible */
   height: 100px; /* mismo alto que ya tenías */
-  resize: vertical;
+  resize: vertical; /* permite redimensionar solo verticalmente */
 }
 
 /* --- 2. Botón Eliminar debajo del texto --- */
@@ -92,7 +91,7 @@ ul {
 
 .mi-nota button {
   margin-top: 0.5rem; /* pequeño espacio respecto al texto */
-  align-self: flex-end; /* opcional: alinea el botón a la derecha */
+  align-self: flex-end; /* alinea el botón a la derecha */
 }
 
 li {

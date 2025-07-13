@@ -7,13 +7,14 @@ function App() {
     const notasGuardadas = localStorage.getItem("misNotas");
     return notasGuardadas ? JSON.parse(notasGuardadas) : [];
   });
-
+  const [notaExpandida, setNotaExpandida] = useState(null); // Gancho para controlar la nota expandida
+  const [hoveredNota, setHoveredNota] = useState(null); // Gancho para controlar la nota sobre la que está pasando el mouse
   // Función que se ejecuta al hacer clic en el botón
   const agregarNota = () => {
     if (nota.trim() === "") return; // Evita guardar notas vacías
-
     setNotas([...notas, nota]); // Agrega nueva nota al array
     setNota(""); // Limpia el campo de texto
+    setNotaExpandida(null); // ← Añade esta línea
   };
 
   const eliminarNota = (indice) => {
@@ -48,11 +49,6 @@ function App() {
           placeholder="Escribe una nota..."
           value={nota}
           onChange={(e) => setNota(e.target.value)} // Cada vez que el usuario escribe
-          onInput={(e) => {
-            // Ajusta el alto del textarea al contenido
-            e.target.style.height = "100px";
-            e.target.style.height = e.target.scrollHeight + "px";
-          }}
         />
         <button onClick={agregarNota}>Agregar</button>
       </div>
@@ -66,19 +62,31 @@ function App() {
             <li
               className="mi-nota"
               key={index}
-              onClick={() => navigator.clipboard.writeText(n)}
-              style={{ cursor: "pointer" }}
-              title="Haz clic para copiar"
+              onMouseEnter={() => setHoveredNota(index)}
+              onMouseLeave={() => setHoveredNota(null)}
+              onClick={() =>
+                // Al hacer clic en la nota esta expande su contenido
+                setNotaExpandida(notaExpandida === index ? null : index)
+              }
+              style={{
+                cursor: "pointer",
+                maxHeight: notaExpandida === index ? "none" : "5em",
+                overflow: notaExpandida === index ? "visible" : "hidden",
+                transition: "max-height 0.3s",
+              }}
+              title="Haz clic para expandir"
             >
               {n}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation(); // Detiene que el clic llegue al <li>
-                  eliminarNota(index);
-                }}
-              >
-                Eliminar
-              </button>
+              {hoveredNota === index && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Detiene que el clic llegue al <li>
+                    eliminarNota(index);
+                  }}
+                >
+                  Eliminar
+                </button>
+              )}
             </li>
           ))}
         </ul>
