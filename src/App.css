@@ -1,0 +1,103 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+/* Hasta aqui el contendio por defecto*/
+
+textarea {
+  border: 1px solid #646464;
+  border-radius: 0.5rem;
+  min-height: 100px;
+  height: auto;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.mi-nota {
+  padding: 0.5em;
+  margin: 0.5em;
+  border: 1px solid #646464;
+  border-radius: 1rem;
+  background-color: #e6f39a8f;
+  white-space: pre-line; /* Con esto se reflejan los saltos de línea usados al escribir en el textarea*/
+}
+
+/* --- 1. Area  de Ingreso (textarea + botón Agregar) --- */
+.area-ingreso {
+  display: flex; /* coloca hijos en fila */
+  gap: 0.75rem; /* espacio entre textarea y botón */
+  flex-direction: column; /* ← columna en vez de fila */
+  align-items: stretch; /* ambos al mismo ancho */
+}
+
+.area-ingreso textarea {
+  flex: 1; /* ocupa todo el ancho disponible */
+  height: 100px; /* mismo alto que ya tenías */
+  resize: vertical;
+}
+
+/* --- 2. Botón Eliminar debajo del texto --- */
+.mi-nota {
+  display: flex;
+  flex-direction: column; /* texto arriba, botón abajo */
+  align-items: flex-start; /* alinea texto a la izquierda */
+  gap: 0.5rem; /* espacio entre texto y botón */
+}
+
+.ver-ocultar-notas {
+  margin: 1rem 0;
+}
+
+.mi-nota button {
+  margin-top: 0.5rem; /* pequeño espacio respecto al texto */
+  align-self: flex-end; /* opcional: alinea el botón a la derecha */
+}
+
+li {
+  min-width: 20rem;
+  max-width: 20rem;
+  word-break: break-word;
+  color: black;
+}
