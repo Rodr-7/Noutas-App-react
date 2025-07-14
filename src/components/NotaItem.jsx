@@ -12,11 +12,10 @@ function NotaItem({
   return (
     <li
       className="mi-nota"
-      key={index}
-      onMouseEnter={() => setHoveredNota(index)}
-      onMouseLeave={() => setHoveredNota(null)}
+      onMouseEnter={() => setHoveredNota(index)} // Activa el estado de hover para mostrar el botón
+      onMouseLeave={() => setHoveredNota(null)} // Lo desactiva al salir
       onClick={() =>
-        // Al hacer clic en la nota esta expande su contenido
+        // Al hacer clic en la nota, esta expande o colapsa su contenido
         setNotaExpandida(notaExpandida === index ? null : index)
       }
       style={{
@@ -27,12 +26,26 @@ function NotaItem({
       }}
       title="Haz clic para expandir"
     >
-      {n}
+      {/* Texto principal de la nota */}
+      {n.texto}
+
+      {/* Muestra la fecha y hora del recordatorio si existe */}
+      {n.recordatorio && (
+        <small>
+          📅{" "}
+          {new Date(n.recordatorio).toLocaleString(undefined, {
+            dateStyle: "short",
+            timeStyle: "short",
+          })}
+        </small>
+      )}
+
+      {/* Botón Eliminar que aparece solo cuando el mouse está sobre la nota */}
       {hoveredNota === index && (
         <button
           onClick={(e) => {
             e.stopPropagation(); // Detiene que el clic llegue al <li>
-            eliminarNota(index);
+            eliminarNota(index); // Llama a la función para eliminar la nota
           }}
         >
           Eliminar
@@ -41,4 +54,5 @@ function NotaItem({
     </li>
   );
 }
+
 export default NotaItem;

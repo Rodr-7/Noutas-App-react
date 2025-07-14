@@ -41,6 +41,14 @@
   color: #888;
 }
 /* Hasta aqui el contendio por defecto*/
+-----------------------------------------------------------
+/* --- Estilos personalizados para Noutas App --- */
+/*Uso la fuente Ubuntu porque era la fuente por defecto en mi PC y me gustaba como se veia*/ {
+  @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+}
+body {
+  font-family: "Ubuntu", Arial, sans-serif;
+}
 
 textarea {
   border: 1px solid #646464;
@@ -105,4 +113,22 @@ li {
   max-width: 20rem;
   word-break: break-word;
   color: black;
+}
+
+.noutas-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .noutas-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .area-ingreso,
+  .area-notas {
+    flex: 1;
+    min-width: 20rem;
+  }
 }
