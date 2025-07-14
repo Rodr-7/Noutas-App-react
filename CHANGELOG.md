@@ -31,15 +31,17 @@ Cada nota ahora tiene esta forma:
 
 #### Lógica del sistema de notificaciones
 
-    Al agregar o modificar las notas ([notas]), se limpian los setTimeout existentes.
+Al agregar o modificar las notas ([notas]), se limpian los setTimeout existentes.
 
-    Se programan nuevos setTimeout para cada nota que tenga recordatorio > Date.now().
+Se programan nuevos setTimeout para cada nota que tenga recordatorio > Date.now().
 
-    Al llegar el momento, se dispara:
+Al llegar el momento, se dispara:
 
-    new Notification("Recordatorio", { body: nota.texto });
+```jsx
+new Notification("Recordatorio", { body: nota.texto });
+```
 
-    Requiere permisos del usuario (Notification.requestPermission()).
+Requiere permisos del usuario (`Notification.requestPermission()`).
 
 #### Validaciones implementadas
 
