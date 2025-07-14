@@ -48,6 +48,10 @@ textarea {
   min-height: 100px;
 }
 
+button {
+  border: 1px solid #646464;
+}
+
 ul {
   display: flex;
   flex-direction: column;
@@ -92,9 +96,11 @@ ul {
 .mi-nota button {
   margin-top: 0.5rem; /* pequeño espacio respecto al texto */
   align-self: flex-end; /* alinea el botón a la derecha */
+  float: right;
 }
 
 li {
+  min-height: 7rem;
   min-width: 20rem;
   max-width: 20rem;
   word-break: break-word;

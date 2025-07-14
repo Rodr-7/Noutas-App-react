@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import NotaItem from "./components/NotaItem";
 
 function App() {
   const [nota, setNota] = useState(""); // Texto que se está escribiendo
@@ -59,35 +60,15 @@ function App() {
         <h2>Mis Notas</h2>
         <ul>
           {notas.map((n, index) => (
-            <li
-              className="mi-nota"
-              key={index}
-              onMouseEnter={() => setHoveredNota(index)}
-              onMouseLeave={() => setHoveredNota(null)}
-              onClick={() =>
-                // Al hacer clic en la nota esta expande su contenido
-                setNotaExpandida(notaExpandida === index ? null : index)
-              }
-              style={{
-                cursor: "pointer",
-                maxHeight: notaExpandida === index ? "none" : "5em",
-                overflow: notaExpandida === index ? "visible" : "hidden",
-                transition: "max-height 0.3s",
-              }}
-              title="Haz clic para expandir"
-            >
-              {n}
-              {hoveredNota === index && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation(); // Detiene que el clic llegue al <li>
-                    eliminarNota(index);
-                  }}
-                >
-                  Eliminar
-                </button>
-              )}
-            </li>
+            <NotaItem
+              n={n}
+              index={index}
+              notaExpandida={notaExpandida}
+              setNotaExpandida={setNotaExpandida}
+              hoveredNota={hoveredNota}
+              setHoveredNota={setHoveredNota}
+              eliminarNota={eliminarNota}
+            />
           ))}
         </ul>
       </div>
