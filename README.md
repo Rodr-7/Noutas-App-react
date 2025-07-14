@@ -17,7 +17,8 @@ Aplicación de notas rápida hecha en React + Vite.
 ### Proximas funciones
 
 - Editar notas
-- Añadir notificaciones de recordatorios sobre notas guardadas
+- Titulo para las notas
+- Formateo de texto dentro de notas (negrita, cursiva, tachado y listas de puntos)
 
 ## Ultimos cambios
 
