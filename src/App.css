@@ -50,10 +50,25 @@ body {
   font-family: "Ubuntu", Arial, sans-serif;
 }
 
+.titulo-app img {
+  height: 3rem;
+  vertical-align: bottom;
+}
 textarea {
   border: 1px solid #646464;
   border-radius: 0.5rem;
   min-height: 100px;
+}
+
+.fecha-recordatorio {
+  border: 1px solid #646464;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  height: 1.5rem;
+  align-self: center;
+}
+.area-ingreso button {
+  align-self: center;
 }
 
 button {

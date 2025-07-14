@@ -96,7 +96,9 @@ function App() {
   // Renderizado de la interfaz de usuario ---------------------------
   return (
     <div style={{ padding: "1rem" }}>
-      <h1>Noutas</h1>
+      <h1 className="titulo-app">
+        Noutas <img src="/public/favicon.ico" alt="" />
+      </h1>
       <div className="noutas-layout">
         <div className="area-ingreso">
           <h2>Agregar Nota</h2>
@@ -107,6 +109,7 @@ function App() {
             onChange={(e) => setNota(e.target.value)} // Cada vez que el usuario escribe
           />
           <input // Campo para seleccionar fecha y hora del recordatorio
+            className="fecha-recordatorio"
             type="datetime-local"
             value={fechaRecordatorio}
             onChange={(e) => {
