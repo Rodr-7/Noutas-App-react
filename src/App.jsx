@@ -93,11 +93,11 @@ function App() {
     });
   }, [notas]);
 
-  // Renderizado de la interfaz de usuario ---------------------------
+  // -----------------Renderizado de la interfaz de usuario ---------------------------
   return (
     <div style={{ padding: "1rem" }}>
       <h1 className="titulo-app">
-        Noutas <img src="/public/favicon.ico" alt="" />
+        Noutas <img src={`${import.meta.env.BASE_URL}icono.ico`} alt="logo" />
       </h1>
       <div className="noutas-layout">
         <div className="area-ingreso">

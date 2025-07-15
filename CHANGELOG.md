@@ -1,3 +1,71 @@
+## 15-07-25
+
+### Cambios para adaptar el proyecto a Github Pages
+
+| Archivo                                                                | Cambio                                                                                                         | Motivo                                                             |
+| ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| **package.json**                                                       | + `"homepage": "https://rodr-7.github.io/Noutas-App-react"`                                                    | Indica a Vite/CRA la URL final del sitio.                          |
+| **vite.config.js**                                                     | + `base: '/Noutas-App-react/'` en `defineConfig`                                                               | Genera rutas estáticas relativas al sub-path que usa GitHub Pages. |
+| **package.json**                                                       | + `gh-pages` como **devDependency**<br>`npm install --save-dev gh-pages`                                       | Utilidad para publicar la carpeta de build en la rama `gh-pages`.  |
+| **package.json → scripts**                                             | \`\`\`jsonc                                                                                                    |                                                                    |
+| "predeploy": "npm run build",                                          |                                                                                                                |                                                                    |
+| "deploy": "gh-pages -d dist"                                           |                                                                                                                |                                                                    |
+| \`\`\`                                                                 | `predeploy` compila y `deploy` sube el contenido de `dist/` a `gh-pages`.                                      |                                                                    |
+| **src/assets/icono.ico** → **public/icono.ico**<br>y componentes React | – Reubicado a `/public`; la referencia se cambió a:<br>`<img src={`\${import.meta.env.BASE_URL}icono.ico`} />` | Evita rutas absolutas “/” que fallan en producción.                |
+
+### 2. Limpieza y publicación
+
+```bash
+# eliminar rama gh-pages obsoleta (opcional)
+git push origin --delete gh-pages
+
+# reconstruir y publicar
+npm run build            # genera /dist con rutas correctas
+npm run deploy           # crea/actualiza la rama gh-pages
+```
+
+Resultado esperado en `gh-pages/index.html`
+
+```html
+<script
+  type="module"
+  crossorigin
+  src="/Noutas-App-react/assets/index-<hash>.js"
+></script>
+```
+
+(ya no apunta a `/src/main.jsx`).
+
+### 3. Configuración en GitHub Pages
+
+I. Settings → Pages → Build and deployment
+II. Source → Deploy from a branch
+III. Branch: gh-pages | Folder: /
+IV. Save y esperar ~1 minuto.
+
+### 4. Verificación
+
+- URL final: https://rodr-7.github.io/Noutas-App-react/
+
+- En DevTools → Network debe cargarse `…/assets/index-<hash>.js` (HTTP 200).
+
+### 4. Cambio dela ruta del icono de `<h1>` para que se muestre correctamente tanto en localhost como en produccion
+
+`import.meta.env.BASE_URL`vale `/Noutas-App-react/` en producción y `/` en desarrollo, así que funciona en ambos entornos.
+
+### 5. Próximos despliegues
+
+Cada vez que se hagan cambios:
+
+```bash
+git add .
+git commit -m "feat: <descripcion>"
+git push origin main
+npm run deploy
+```
+
+(Para automatizarlo, debera crearse un workflow de GitHub Actions que compile y publique en cada push a main.)
+
 ## 14-07-25
 
 ### 🔔 Añadida funcionalidad: Recordatorios con Notificaciones
