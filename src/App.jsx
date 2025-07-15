@@ -97,7 +97,7 @@ function App() {
   return (
     <div style={{ padding: "1rem" }}>
       <h1 className="titulo-app">
-        Noutas <img src={`${import.meta.env.BASE_URL}icono.ico`} alt="logo" />
+        Noutas <img src={`${import.meta.env.BASE_URL}favicon.ico`} alt="logo" />
       </h1>
       <div className="noutas-layout">
         <div className="area-ingreso">
